@@ -41,7 +41,7 @@ namespace Pulumi.Kubernetes.Types.Outputs.Apps.V1
         /// </summary>
         public readonly int ObservedGeneration;
         /// <summary>
-        /// readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+        /// readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
         /// </summary>
         public readonly int ReadyReplicas;
         /// <summary>

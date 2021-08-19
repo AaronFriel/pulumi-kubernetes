@@ -1861,7 +1861,7 @@ export namespace apps {
              */
             numberMisscheduled: pulumi.Input<number>;
             /**
-             * The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+             * numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
              */
             numberReady: pulumi.Input<number>;
             /**
@@ -2029,7 +2029,7 @@ export namespace apps {
              */
             observedGeneration?: pulumi.Input<number>;
             /**
-             * Total number of ready pods targeted by this deployment.
+             * readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
              */
             readyReplicas?: pulumi.Input<number>;
             /**
@@ -2155,7 +2155,7 @@ export namespace apps {
              */
             observedGeneration?: pulumi.Input<number>;
             /**
-             * The number of ready replicas for this replica set.
+             * readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
              */
             readyReplicas?: pulumi.Input<number>;
             /**
@@ -2341,7 +2341,7 @@ export namespace apps {
              */
             observedGeneration?: pulumi.Input<number>;
             /**
-             * readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+             * readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
              */
             readyReplicas?: pulumi.Input<number>;
             /**
@@ -6294,7 +6294,7 @@ export namespace core {
              */
             containerID?: pulumi.Input<string>;
             /**
-             * The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images
+             * The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images.
              */
             image: pulumi.Input<string>;
             /**
@@ -6314,7 +6314,7 @@ export namespace core {
              */
             ready: pulumi.Input<boolean>;
             /**
-             * The number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed. Note that this is calculated from dead containers. But those containers are subject to garbage collection. This value will get capped at 5 by GC.
+             * The number of times the container has been restarted.
              */
             restartCount: pulumi.Input<number>;
             /**
@@ -13852,7 +13852,7 @@ export namespace rbac {
         }
 
         /**
-         * ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.22.
+         * ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRole, and will no longer be served in v1.20.
          */
         export interface ClusterRole {
             /**
@@ -13878,7 +13878,7 @@ export namespace rbac {
         }
 
         /**
-         * ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRoleBinding, and will no longer be served in v1.22.
+         * ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 ClusterRoleBinding, and will no longer be served in v1.20.
          */
         export interface ClusterRoleBinding {
             /**
@@ -13912,7 +13912,7 @@ export namespace rbac {
              */
             apiGroups?: pulumi.Input<pulumi.Input<string>[]>;
             /**
-             * NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both.
+             * NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both.
              */
             nonResourceURLs?: pulumi.Input<pulumi.Input<string>[]>;
             /**
@@ -13920,17 +13920,17 @@ export namespace rbac {
              */
             resourceNames?: pulumi.Input<pulumi.Input<string>[]>;
             /**
-             * Resources is a list of resources this rule applies to. '*' represents all resources.
+             * Resources is a list of resources this rule applies to.  ResourceAll represents all resources.
              */
             resources?: pulumi.Input<pulumi.Input<string>[]>;
             /**
-             * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. '*' represents all verbs.
+             * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds.
              */
             verbs: pulumi.Input<pulumi.Input<string>[]>;
         }
 
         /**
-         * Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 Role, and will no longer be served in v1.22.
+         * Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 Role, and will no longer be served in v1.20.
          */
         export interface Role {
             /**
@@ -13952,7 +13952,7 @@ export namespace rbac {
         }
 
         /**
-         * RoleBinding references a role, but does not contain it.  It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.22.
+         * RoleBinding references a role, but does not contain it.  It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace. Deprecated in v1.17 in favor of rbac.authorization.k8s.io/v1 RoleBinding, and will no longer be served in v1.20.
          */
         export interface RoleBinding {
             /**
@@ -14261,7 +14261,7 @@ export namespace scheduling {
              */
             metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
             /**
-             * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
+             * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is alpha-level and is only honored by servers that enable the NonPreemptingPriority feature.
              */
             preemptionPolicy?: pulumi.Input<string>;
             /**
@@ -14420,7 +14420,7 @@ export namespace storage {
              *
              * Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.
              *
-             * This field is immutable.
+             * This field was immutable in Kubernetes <= 1.22 and now is mutable.
              *
              * This is a beta field and only available when the CSIStorageCapacity feature is enabled. The default is false.
              */

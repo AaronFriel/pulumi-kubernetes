@@ -313,7 +313,7 @@ class DaemonSetStatusArgs:
         :param pulumi.Input[int] current_number_scheduled: The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         :param pulumi.Input[int] desired_number_scheduled: The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod). More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         :param pulumi.Input[int] number_misscheduled: The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-        :param pulumi.Input[int] number_ready: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+        :param pulumi.Input[int] number_ready: numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
         :param pulumi.Input[int] collision_count: Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
         :param pulumi.Input[Sequence[pulumi.Input['DaemonSetConditionArgs']]] conditions: Represents the latest available observations of a DaemonSet's current state.
         :param pulumi.Input[int] number_available: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
@@ -378,7 +378,7 @@ class DaemonSetStatusArgs:
     @pulumi.getter(name="numberReady")
     def number_ready(self) -> pulumi.Input[int]:
         """
-        The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+        numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
         """
         return pulumi.get(self, "number_ready")
 
@@ -840,7 +840,7 @@ class DeploymentStatusArgs:
         :param pulumi.Input[int] collision_count: Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentConditionArgs']]] conditions: Represents the latest available observations of a deployment's current state.
         :param pulumi.Input[int] observed_generation: The generation observed by the deployment controller.
-        :param pulumi.Input[int] ready_replicas: Total number of ready pods targeted by this deployment.
+        :param pulumi.Input[int] ready_replicas: readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
         :param pulumi.Input[int] replicas: Total number of non-terminated pods targeted by this deployment (their labels match the selector).
         :param pulumi.Input[int] unavailable_replicas: Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
         :param pulumi.Input[int] updated_replicas: Total number of non-terminated pods targeted by this deployment that have the desired template spec.
@@ -914,7 +914,7 @@ class DeploymentStatusArgs:
     @pulumi.getter(name="readyReplicas")
     def ready_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        Total number of ready pods targeted by this deployment.
+        readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
         """
         return pulumi.get(self, "ready_replicas")
 
@@ -1282,7 +1282,7 @@ class ReplicaSetStatusArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ReplicaSetConditionArgs']]] conditions: Represents the latest available observations of a replica set's current state.
         :param pulumi.Input[int] fully_labeled_replicas: The number of pods that have labels matching the labels of the pod template of the replicaset.
         :param pulumi.Input[int] observed_generation: ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
-        :param pulumi.Input[int] ready_replicas: The number of ready replicas for this replica set.
+        :param pulumi.Input[int] ready_replicas: readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
         """
         pulumi.set(__self__, "replicas", replicas)
         if available_replicas is not None:
@@ -1360,7 +1360,7 @@ class ReplicaSetStatusArgs:
     @pulumi.getter(name="readyReplicas")
     def ready_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of ready replicas for this replica set.
+        readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
         """
         return pulumi.get(self, "ready_replicas")
 
@@ -1818,7 +1818,7 @@ class StatefulSetStatusArgs:
         :param pulumi.Input[int] current_replicas: currentReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.
         :param pulumi.Input[str] current_revision: currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas).
         :param pulumi.Input[int] observed_generation: observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet's generation, which is updated on mutation by the API Server.
-        :param pulumi.Input[int] ready_replicas: readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+        :param pulumi.Input[int] ready_replicas: readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
         :param pulumi.Input[str] update_revision: updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas)
         :param pulumi.Input[int] updated_replicas: updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision.
         """
@@ -1930,7 +1930,7 @@ class StatefulSetStatusArgs:
     @pulumi.getter(name="readyReplicas")
     def ready_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+        readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
         """
         return pulumi.get(self, "ready_replicas")
 

@@ -250,7 +250,7 @@ type CSIDriverSpec struct {
 	//
 	// Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.
 	//
-	// This field is immutable.
+	// This field was immutable in Kubernetes <= 1.22 and now is mutable.
 	//
 	// This is a beta field and only available when the CSIStorageCapacity feature is enabled. The default is false.
 	StorageCapacity *bool `pulumi:"storageCapacity"`
@@ -310,7 +310,7 @@ type CSIDriverSpecArgs struct {
 	//
 	// Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.
 	//
-	// This field is immutable.
+	// This field was immutable in Kubernetes <= 1.22 and now is mutable.
 	//
 	// This is a beta field and only available when the CSIStorageCapacity feature is enabled. The default is false.
 	StorageCapacity pulumi.BoolPtrInput `pulumi:"storageCapacity"`
@@ -447,7 +447,7 @@ func (o CSIDriverSpecOutput) RequiresRepublish() pulumi.BoolPtrOutput {
 //
 // Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.
 //
-// This field is immutable.
+// This field was immutable in Kubernetes <= 1.22 and now is mutable.
 //
 // This is a beta field and only available when the CSIStorageCapacity feature is enabled. The default is false.
 func (o CSIDriverSpecOutput) StorageCapacity() pulumi.BoolPtrOutput {
@@ -551,7 +551,7 @@ func (o CSIDriverSpecPtrOutput) RequiresRepublish() pulumi.BoolPtrOutput {
 //
 // Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.
 //
-// This field is immutable.
+// This field was immutable in Kubernetes <= 1.22 and now is mutable.
 //
 // This is a beta field and only available when the CSIStorageCapacity feature is enabled. The default is false.
 func (o CSIDriverSpecPtrOutput) StorageCapacity() pulumi.BoolPtrOutput {

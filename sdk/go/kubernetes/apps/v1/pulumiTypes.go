@@ -808,7 +808,7 @@ type DaemonSetStatus struct {
 	NumberAvailable *int `pulumi:"numberAvailable"`
 	// The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
 	NumberMisscheduled int `pulumi:"numberMisscheduled"`
-	// The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+	// numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
 	NumberReady int `pulumi:"numberReady"`
 	// The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
 	NumberUnavailable *int `pulumi:"numberUnavailable"`
@@ -843,7 +843,7 @@ type DaemonSetStatusArgs struct {
 	NumberAvailable pulumi.IntPtrInput `pulumi:"numberAvailable"`
 	// The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
 	NumberMisscheduled pulumi.IntInput `pulumi:"numberMisscheduled"`
-	// The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+	// numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
 	NumberReady pulumi.IntInput `pulumi:"numberReady"`
 	// The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
 	NumberUnavailable pulumi.IntPtrInput `pulumi:"numberUnavailable"`
@@ -961,7 +961,7 @@ func (o DaemonSetStatusOutput) NumberMisscheduled() pulumi.IntOutput {
 	return o.ApplyT(func(v DaemonSetStatus) int { return v.NumberMisscheduled }).(pulumi.IntOutput)
 }
 
-// The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+// numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
 func (o DaemonSetStatusOutput) NumberReady() pulumi.IntOutput {
 	return o.ApplyT(func(v DaemonSetStatus) int { return v.NumberReady }).(pulumi.IntOutput)
 }
@@ -1059,7 +1059,7 @@ func (o DaemonSetStatusPtrOutput) NumberMisscheduled() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
+// numberReady is the number of nodes that should be running the daemon pod and have one or more of the daemon pod running with a Ready Condition.
 func (o DaemonSetStatusPtrOutput) NumberReady() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DaemonSetStatus) *int {
 		if v == nil {
@@ -1958,7 +1958,7 @@ type DeploymentStatus struct {
 	Conditions []DeploymentCondition `pulumi:"conditions"`
 	// The generation observed by the deployment controller.
 	ObservedGeneration *int `pulumi:"observedGeneration"`
-	// Total number of ready pods targeted by this deployment.
+	// readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
 	ReadyReplicas *int `pulumi:"readyReplicas"`
 	// Total number of non-terminated pods targeted by this deployment (their labels match the selector).
 	Replicas *int `pulumi:"replicas"`
@@ -1989,7 +1989,7 @@ type DeploymentStatusArgs struct {
 	Conditions DeploymentConditionArrayInput `pulumi:"conditions"`
 	// The generation observed by the deployment controller.
 	ObservedGeneration pulumi.IntPtrInput `pulumi:"observedGeneration"`
-	// Total number of ready pods targeted by this deployment.
+	// readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
 	ReadyReplicas pulumi.IntPtrInput `pulumi:"readyReplicas"`
 	// Total number of non-terminated pods targeted by this deployment (their labels match the selector).
 	Replicas pulumi.IntPtrInput `pulumi:"replicas"`
@@ -2097,7 +2097,7 @@ func (o DeploymentStatusOutput) ObservedGeneration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentStatus) *int { return v.ObservedGeneration }).(pulumi.IntPtrOutput)
 }
 
-// Total number of ready pods targeted by this deployment.
+// readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
 func (o DeploymentStatusOutput) ReadyReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DeploymentStatus) *int { return v.ReadyReplicas }).(pulumi.IntPtrOutput)
 }
@@ -2175,7 +2175,7 @@ func (o DeploymentStatusPtrOutput) ObservedGeneration() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Total number of ready pods targeted by this deployment.
+// readyReplicas is the number of pods targeted by this Deployment with a Ready Condition.
 func (o DeploymentStatusPtrOutput) ReadyReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DeploymentStatus) *int {
 		if v == nil {
@@ -2923,7 +2923,7 @@ type ReplicaSetStatus struct {
 	FullyLabeledReplicas *int `pulumi:"fullyLabeledReplicas"`
 	// ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
 	ObservedGeneration *int `pulumi:"observedGeneration"`
-	// The number of ready replicas for this replica set.
+	// readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
 	ReadyReplicas *int `pulumi:"readyReplicas"`
 	// Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
 	Replicas int `pulumi:"replicas"`
@@ -2950,7 +2950,7 @@ type ReplicaSetStatusArgs struct {
 	FullyLabeledReplicas pulumi.IntPtrInput `pulumi:"fullyLabeledReplicas"`
 	// ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
 	ObservedGeneration pulumi.IntPtrInput `pulumi:"observedGeneration"`
-	// The number of ready replicas for this replica set.
+	// readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
 	ReadyReplicas pulumi.IntPtrInput `pulumi:"readyReplicas"`
 	// Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
 	Replicas pulumi.IntInput `pulumi:"replicas"`
@@ -3054,7 +3054,7 @@ func (o ReplicaSetStatusOutput) ObservedGeneration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ReplicaSetStatus) *int { return v.ObservedGeneration }).(pulumi.IntPtrOutput)
 }
 
-// The number of ready replicas for this replica set.
+// readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
 func (o ReplicaSetStatusOutput) ReadyReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ReplicaSetStatus) *int { return v.ReadyReplicas }).(pulumi.IntPtrOutput)
 }
@@ -3122,7 +3122,7 @@ func (o ReplicaSetStatusPtrOutput) ObservedGeneration() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The number of ready replicas for this replica set.
+// readyReplicas is the number of pods targeted by this ReplicaSet with a Ready Condition.
 func (o ReplicaSetStatusPtrOutput) ReadyReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ReplicaSetStatus) *int {
 		if v == nil {
@@ -4284,7 +4284,7 @@ type StatefulSetStatus struct {
 	CurrentRevision *string `pulumi:"currentRevision"`
 	// observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet's generation, which is updated on mutation by the API Server.
 	ObservedGeneration *int `pulumi:"observedGeneration"`
-	// readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+	// readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
 	ReadyReplicas *int `pulumi:"readyReplicas"`
 	// replicas is the number of Pods created by the StatefulSet controller.
 	Replicas int `pulumi:"replicas"`
@@ -4319,7 +4319,7 @@ type StatefulSetStatusArgs struct {
 	CurrentRevision pulumi.StringPtrInput `pulumi:"currentRevision"`
 	// observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet's generation, which is updated on mutation by the API Server.
 	ObservedGeneration pulumi.IntPtrInput `pulumi:"observedGeneration"`
-	// readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+	// readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
 	ReadyReplicas pulumi.IntPtrInput `pulumi:"readyReplicas"`
 	// replicas is the number of Pods created by the StatefulSet controller.
 	Replicas pulumi.IntInput `pulumi:"replicas"`
@@ -4437,7 +4437,7 @@ func (o StatefulSetStatusOutput) ObservedGeneration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v StatefulSetStatus) *int { return v.ObservedGeneration }).(pulumi.IntPtrOutput)
 }
 
-// readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+// readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
 func (o StatefulSetStatusOutput) ReadyReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v StatefulSetStatus) *int { return v.ReadyReplicas }).(pulumi.IntPtrOutput)
 }
@@ -4535,7 +4535,7 @@ func (o StatefulSetStatusPtrOutput) ObservedGeneration() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+// readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
 func (o StatefulSetStatusPtrOutput) ReadyReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *StatefulSetStatus) *int {
 		if v == nil {

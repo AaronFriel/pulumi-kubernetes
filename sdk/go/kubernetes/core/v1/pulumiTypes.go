@@ -5510,7 +5510,7 @@ func (o ContainerStateWaitingPtrOutput) Reason() pulumi.StringPtrOutput {
 type ContainerStatus struct {
 	// Container's ID in the format 'docker://<container_id>'.
 	ContainerID *string `pulumi:"containerID"`
-	// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images
+	// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images.
 	Image string `pulumi:"image"`
 	// ImageID of the container's image.
 	ImageID string `pulumi:"imageID"`
@@ -5520,7 +5520,7 @@ type ContainerStatus struct {
 	Name string `pulumi:"name"`
 	// Specifies whether the container has passed its readiness probe.
 	Ready bool `pulumi:"ready"`
-	// The number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed. Note that this is calculated from dead containers. But those containers are subject to garbage collection. This value will get capped at 5 by GC.
+	// The number of times the container has been restarted.
 	RestartCount int `pulumi:"restartCount"`
 	// Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined.
 	Started *bool `pulumi:"started"`
@@ -5543,7 +5543,7 @@ type ContainerStatusInput interface {
 type ContainerStatusArgs struct {
 	// Container's ID in the format 'docker://<container_id>'.
 	ContainerID pulumi.StringPtrInput `pulumi:"containerID"`
-	// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images
+	// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images.
 	Image pulumi.StringInput `pulumi:"image"`
 	// ImageID of the container's image.
 	ImageID pulumi.StringInput `pulumi:"imageID"`
@@ -5553,7 +5553,7 @@ type ContainerStatusArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies whether the container has passed its readiness probe.
 	Ready pulumi.BoolInput `pulumi:"ready"`
-	// The number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed. Note that this is calculated from dead containers. But those containers are subject to garbage collection. This value will get capped at 5 by GC.
+	// The number of times the container has been restarted.
 	RestartCount pulumi.IntInput `pulumi:"restartCount"`
 	// Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined.
 	Started pulumi.BoolPtrInput `pulumi:"started"`
@@ -5618,7 +5618,7 @@ func (o ContainerStatusOutput) ContainerID() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerStatus) *string { return v.ContainerID }).(pulumi.StringPtrOutput)
 }
 
-// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images
+// The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images.
 func (o ContainerStatusOutput) Image() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerStatus) string { return v.Image }).(pulumi.StringOutput)
 }
@@ -5643,7 +5643,7 @@ func (o ContainerStatusOutput) Ready() pulumi.BoolOutput {
 	return o.ApplyT(func(v ContainerStatus) bool { return v.Ready }).(pulumi.BoolOutput)
 }
 
-// The number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed. Note that this is calculated from dead containers. But those containers are subject to garbage collection. This value will get capped at 5 by GC.
+// The number of times the container has been restarted.
 func (o ContainerStatusOutput) RestartCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ContainerStatus) int { return v.RestartCount }).(pulumi.IntOutput)
 }

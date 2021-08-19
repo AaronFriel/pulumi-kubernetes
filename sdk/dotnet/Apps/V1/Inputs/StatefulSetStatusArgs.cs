@@ -58,7 +58,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Apps.V1
         public Input<int>? ObservedGeneration { get; set; }
 
         /// <summary>
-        /// readyReplicas is the number of Pods created by the StatefulSet controller that have a Ready Condition.
+        /// readyReplicas is the number of pods created for this StatefulSet with a Ready Condition.
         /// </summary>
         [Input("readyReplicas")]
         public Input<int>? ReadyReplicas { get; set; }
